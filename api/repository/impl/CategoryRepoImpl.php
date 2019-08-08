@@ -23,16 +23,27 @@ class CategoryRepoImpl implements CategoryRepo
 
     public function updateCategory(Category $category): bool
     {
-        // TODO: Implement updateCategory() method.
+        $response=  $this->connnection->query("UPDATE Category SET cat_name=('{$category->getCatName()}') WHERE c_id=('{$category->getCId()}')");
+        if ($response>0 && $this->connnection->affected_rows>0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function deleteCategory($categoryID): bool
     {
-        // TODO: Implement deleteCategory() method.
+        $response =  $this->connnection->query("delete from Category where c_id='{$categoryID}'");
+        if ($response > 0 && $this->connnection->affected_rows>0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function getAllCategory(): array
     {
-        // TODO: Implement getAllCategory() method.
+        $resultSet =   $this->connnection->query("select * from Category");
+        return $resultSet->fetch_all();
     }
 }
