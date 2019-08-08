@@ -12,27 +12,6 @@ class Book
     private $status;
 
     /**
-     * Book constructor.
-     * @param $isbn
-     * @param $book_name
-     * @param $a_id
-     * @param $c_id
-     * @param $p_id
-     * @param $qty
-     * @param $status
-     */
-    public function __construct($isbn, $book_name, $a_id, $c_id, $p_id, $qty, $status)
-    {
-        $this->isbn = $isbn;
-        $this->book_name = $book_name;
-        $this->a_id = $a_id;
-        $this->c_id = $c_id;
-        $this->p_id = $p_id;
-        $this->qty = $qty;
-        $this->status = $status;
-    }
-
-    /**
      * @return mixed
      */
     public function getIsbn()
