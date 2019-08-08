@@ -5,4 +5,6 @@ interface PublisherBO
 {
     public function addPublisher(Publisher $publisher);
     public function updatePublisher(Publisher $publisher);
+    public function deletePublisher($publisherId);
+    public function getAllPublisher();
 }

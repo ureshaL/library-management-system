@@ -8,4 +8,8 @@ interface PublisherRepo
     public function addPublisher(Publisher $publisher):bool;
 
     public function updatePublisher(Publisher $publisher):bool ;
+
+    public function deletePublisher($publisherId): bool ;
+
+    public function getAllPublisher():array ;
 }

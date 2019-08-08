@@ -32,4 +32,26 @@ class PublisherBOImpl implements PublisherBO
             return $connection->error;
         }
     }
+
+    public function deletePublisher($publisherId)
+    {
+        $publisherRepo = new PublisherRepoImpl();
+        $connection = (new DBConnection())->getConnection();
+        $publisherRepo->setConnection($connection);
+        $res = $publisherRepo->deletePublisher($publisherId);
+        if ($res){
+            return true;
+        }else{
+            return $connection->error;
+        }
+    }
+
+    public function getAllPublisher()
+    {
+        $publisherRepo = new PublisherRepoImpl();
+        $connection = (new DBConnection())->getConnection();
+        $publisherRepo->setConnection($connection);
+        $publisherArray = $publisherRepo->getAllPublisher();
+        return $publisherArray;
+    }
 }

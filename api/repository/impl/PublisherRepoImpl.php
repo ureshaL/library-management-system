@@ -30,4 +30,20 @@ class PublisherRepoImpl implements PublisherRepo
             return false;
         }
     }
+
+    public function deletePublisher($publisherId): bool
+    {
+        $response =  $this->connnection->query("delete from Publisher where p_id='{$publisherId}'");
+        if ($response > 0 && $this->connnection->affected_rows>0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getAllPublisher(): array
+    {
+        $resultSet =   $this->connnection->query("select * from Publisher");
+        return $resultSet->fetch_all();
+    }
 }
