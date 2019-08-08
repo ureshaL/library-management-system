@@ -13,8 +13,7 @@ class BorrowOrderRepoImpl implements BorrowOrderRepo
 
     public function addBorrowOrder(Borrow_Order $borrow_Order): bool
     {
-        $response=  $this->connection->query("INSERT INTO Borrow_Order VALUES (
-            '{$borrow_Order->getBroId()}',
+        $response=  $this->connection->query("INSERT INTO Borrow_Order (date,User_nic) VALUES (
             '{$borrow_Order->getDate()}',
             '{$borrow_Order->getUserNic()}'
             )

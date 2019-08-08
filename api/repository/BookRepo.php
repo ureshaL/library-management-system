@@ -7,9 +7,11 @@ interface BookRepo
 
     public function addBook(Book $book):bool;
 
-    public function updateBook(Book $book):bool ;
+    public function updateBook(Book $book):bool;
 
-    public function deleteBook($bookID): bool ;
+    public function deleteBook($bookID): bool;
 
-    public function getAllBooks():array ;
+    public function getAllBooks():array;
+
+    public function markBooksBorrowed($bookIds): bool;
 }

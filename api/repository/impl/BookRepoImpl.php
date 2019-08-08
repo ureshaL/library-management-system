@@ -63,4 +63,15 @@ class BookRepoImpl implements BookRepo
         $resultSet =   $this->connection->query("select * from Book");
         return $resultSet->fetch_all();
     }
+
+    public function markBooksBorrowed($bookIds): bool
+    {
+        foreach ($bookIds as $bookId) {
+            $response = $this->connection->query("UPDATE Book SET status='1' WHERE isbn='{$bookId}'");
+            if ($response <= 0 || $this->connection->affected_rows<=0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
