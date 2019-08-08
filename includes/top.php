@@ -26,8 +26,10 @@
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap4.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -79,7 +81,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="pages/users.php" class="nav-link">
+                        <a href="users.php" class="nav-link">
                             <i class="nav-icon fas fa-user-friends"></i>
                             <p>
                                 Users
@@ -96,25 +98,25 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="books.php" class="nav-link">
                                     <i class="fas fa-book nav-icon"></i>
                                     <p>Manage Books</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="publishers.php" class="nav-link">
                                     <i class="fab fa-leanpub nav-icon"></i>
                                     <p>Manage Publishers</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="authors.php" class="nav-link">
                                     <i class="fas fa-info nav-icon"></i>
                                     <p>Manage Authors</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="categories.php" class="nav-link">
                                     <i class="fab fa-twitch nav-icon"></i>
                                     <p>Manage Categories</p>
                                 </a>
@@ -131,13 +133,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="borrow-books.php" class="nav-link">
                                     <i class="fas fa-shopping-bag nav-icon"></i>
                                     <p>Borrow Books</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="./index.html" class="nav-link">
+                                <a href="return-books.php" class="nav-link">
                                     <i class="fas fa-reply-all nav-icon"></i>
                                     <p>Return Books</p>
                                 </a>
