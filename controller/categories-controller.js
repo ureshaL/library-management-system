@@ -1,18 +1,16 @@
 const btnSave = $('#btn-save');
 const btnDelete = $('#btn-delete');
 const btnUpdate = $('#btn-update');
-const cusFormAdd = $('#cus-form-add');
-const cusFormUpdate = $('#cus-form-update');
+const formAdd = $('#form-add');
+const formUpdate = $('#form-update');
 const addModal = $('#add-modal');
 const deleteModal = $('#delete-modal');
 const updateModal = $('#update-modal');
 const updateFormControls = {
-    nic: $('#upNic'),
-    name: $('#upName'),
-    mobile: $('#upMobile'),
-    address: $('#upAddress')
+    catId: $('#upCatId'),
+    catName: $('#upCatName')
 };
-const userTblBody = $('#user-tbl-body');
+const tblBody = $('#user-tbl-body');
 let dataTable;
 function initDataTable() {
     dataTable = $("#example1").DataTable();
@@ -20,14 +18,14 @@ function initDataTable() {
 
 btnSave.click(function () {
     $.ajax({
-        url: API_URL + '/UserService.php?action=save',
+        url: API_URL + '/CategoryService.php?action=save',
         method: 'POST',
-        data: cusFormAdd.serializeArray(),
+        data: formAdd.serializeArray(),
         dataType: 'json'
     }).done(function (res) {
         if (res.success === true) {
             addModal.modal('hide');
-            loadAllUsers();
+            loadAllData();
         } else {
             alert(res.success);
         }
@@ -36,39 +34,37 @@ btnSave.click(function () {
 
 btnUpdate.click(function () {
     $.ajax({
-        url: API_URL + '/UserService.php?action=update',
+        url: API_URL + '/CategoryService.php?action=update',
         method: 'POST',
-        data: cusFormUpdate.serializeArray(),
+        data: formUpdate.serializeArray(),
         dataType: 'json'
     }).done(function (res) {
         if (res.success === true) {
             updateModal.modal('hide');
-            loadAllUsers();
+            loadAllData();
         } else {
             alert(res.success);
         }
     });
 });
 
-function loadAllUsers() {
+function loadAllData() {
     $.ajax({
-        url: API_URL + '/UserService.php?action=getAll',
+        url: API_URL + '/CategoryService.php?action=getAll',
         method: 'GET',
         dataType: 'json'
     }).done(function (res) {
         if (res.success !== null) {
             dataTable.destroy();
-            userTblBody.html('');
-            for (const user of res) {
-                userTblBody.append(`
+            tblBody.html('');
+            for (const row of res) {
+                tblBody.append(`
                     <tr>
-                        <td>${user[0]}</td>
-                        <td>${user[1]}</td>
-                        <td>${user[2]}</td>
-                        <td>${user[3]}</td>
+                        <td>${row[0]}</td>
+                        <td>${row[1]}</td>
                         <td class="text-center">
-                            <button onclick="loadUpdateModal('${user[0]}','${user[1]}','${user[2]}','${user[3]}')" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Update</button>
-                            <button onclick="deleteUser('${user[0]}')" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>
+                            <button onclick="loadUpdateModal('${row[0]}','${row[1]}','${row[2]}','${row[3]}')" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Update</button>
+                            <button onclick="deleteRow('${row[0]}')" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>
                         </td>
                     </tr>
                 `);
@@ -76,29 +72,27 @@ function loadAllUsers() {
             initDataTable();
         }
     });
-} loadAllUsers();
+} loadAllData();
 
-function loadUpdateModal(nic, name, mobile, address) {
-    updateFormControls.nic.val(nic);
-    updateFormControls.name.val(name);
-    updateFormControls.mobile.val(mobile);
-    updateFormControls.address.val(address);
+function loadUpdateModal(catId, catName) {
+    updateFormControls.catId.val(catId);
+    updateFormControls.catName.val(catName);
 
     updateModal.modal('show');
 }
 
-function deleteUser(userId) {
+function deleteRow(id) {
     deleteModal.modal('show');
     btnDelete.click(function () {
         $.ajax({
-            url: API_URL + '/UserService.php?action=delete',
+            url: API_URL + '/CategoryService.php?action=delete',
             method: 'POST',
-            data: {nic: userId},
+            data: {CategoryID: id},
             dataType: 'json'
         }).done(function (res) {
             if (res.success === true) {
                 deleteModal.modal('hide');
-                loadAllUsers();
+                loadAllData();
             } else {
                 alert(res.success);
             }

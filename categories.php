@@ -6,12 +6,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Users</h1>
+                    <h1 class="m-0 text-dark">Categories</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Library Management System</a></li>
-                        <li class="breadcrumb-item active">Users</li>
+                        <li class="breadcrumb-item active">Categories</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -25,10 +25,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title d-inline-block pt-1">Manage all users</h3>
+                        <h3 class="card-title d-inline-block pt-1">Manage all book categories</h3>
                         <div class="float-right d-inline-block">
                             <button class="btn btn-success" data-toggle="modal" data-target="#add-modal">
-                                <i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;Add New User
+                                <i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;Add New Category
                             </button>
                         </div>
                     </div>
@@ -37,10 +37,8 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>User NIC</th>
-                                    <th>Name</th>
-                                    <th>Mobile</th>
-                                    <th>Address</th>
+                                    <th>Category ID</th>
+                                    <th>Category Name</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -67,36 +65,18 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Add New User</h4>
+                <h4 class="modal-title">Add New Category</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form id="cus-form-add">
+                <form id="form-add">
                     <div class="form-group">
-                        <label for="nic">User NIC</label>
+                        <label for="catName">Category Name</label>
                         <input type="text" class="form-control"
-                               id="nic" name="nic"
-                               placeholder="Enter user nic">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control"
-                               id="name" name="userName"
-                               placeholder="Enter user name">
-                    </div>
-                    <div class="form-group">
-                        <label for="mobile">Mobile Number</label>
-                        <input type="text" class="form-control"
-                               id="mobile" name="mobile"
-                               placeholder="Enter user mobile">
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <textarea class="form-control"
-                                  id="address" name="address"
-                                  placeholder="Enter user address"></textarea>
+                               id="catName" name="CategoryName"
+                               placeholder="Enter category name">
                     </div>
                 </form>
             </div>
@@ -118,36 +98,23 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Update User</h4>
+                <h4 class="modal-title">Update Category</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form id="cus-form-update">
+                <form id="form-update">
                     <div class="form-group">
-                        <label for="upNic">User NIC</label>
+                        <label for="upCatId">Category ID</label>
                         <input type="text" class="form-control"
-                               id="upNic" name="nic"
-                               placeholder="Enter user nic">
+                               id="upCatId" name="CategoryID">
                     </div>
                     <div class="form-group">
-                        <label for="upName">Name</label>
+                        <label for="upCatName">Category Name</label>
                         <input type="text" class="form-control"
-                               id="upName" name="userName"
-                               placeholder="Enter user name">
-                    </div>
-                    <div class="form-group">
-                        <label for="upMobile">Mobile Number</label>
-                        <input type="text" class="form-control"
-                               id="upMobile" name="mobile"
-                               placeholder="Enter mobile number">
-                    </div>
-                    <div class="form-group">
-                        <label for="upAddress">Address</label>
-                        <textarea class="form-control"
-                                  id="upAddress" name="address"
-                                  placeholder="Enter user address"></textarea>
+                               id="upCatName" name="CategoryName"
+                               placeholder="Enter categoey name">
                     </div>
                 </form>
             </div>
@@ -169,13 +136,13 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Delete User?</h4>
+                <h4 class="modal-title">Delete Category?</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                Are you sure do you really want to delete this user?
+                Are you sure do you really want to delete this category?
             </div>
 
             <!-- Modal footer -->
@@ -190,6 +157,6 @@
 
 <?php include_once('includes/common-scripts.php') ?>
 <script src="constants/constants.js"></script>
-<script src="controller/users-controller.js"></script>
+<script src="controller/categories-controller.js"></script>
 </body>
 </html>
