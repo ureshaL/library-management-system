@@ -104,7 +104,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="publishers.php" class="nav-link">
+                                <a href="publisher.php" class="nav-link">
                                     <i class="fab fa-leanpub nav-icon"></i>
                                     <p>Manage Publishers</p>
                                 </a>
