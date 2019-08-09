@@ -23,6 +23,29 @@ class BorrowOrderBOImpl implements BorrowOrderBO
         $bookRepo->setConnection($connection);
 
         $isAdd1 = $borrowOrderRepo->addBorrowOrder($borrow_Order);
-        $isAdd2 = $borrowingRepo->addBorrowings()
+        $isAdd2 = $borrowingRepo->addBorrowings($borrowings);
+        $isAdd3 = $bookRepo->markBooksBorrowed(Borrowing::getIsbn());
+
+        if ($isAdd1){
+            if ($isAdd2){
+                if (!$isAdd3){
+                    echo $connection->error;
+                    $connection->rollback();
+                    $connection->autocommit(true);
+                    return false;
+                }
+                $connection->commit();
+                $connection->autocommit(true);
+                return true;
+            }
+            $connection->commit();
+            $connection->autocommit(true);
+            return true;
+        }else{
+            echo $connection->error;
+            $connection->rollback();
+            $connection->autocommit(true);
+            return false;
+        }
     }
 }
