@@ -83,6 +83,7 @@ function loadUpdateModal(catId, catName) {
 
 function deleteRow(id) {
     deleteModal.modal('show');
+    btnDelete.off('click');
     btnDelete.click(function () {
         $.ajax({
             url: API_URL + '/CategoryService.php?action=delete',
@@ -90,7 +91,7 @@ function deleteRow(id) {
             data: {CategoryID: id},
             dataType: 'json'
         }).done(function (res) {
-            if (res.success === true) {
+            if (res.success != null && res.success === true) {
                 deleteModal.modal('hide');
                 loadAllData();
             } else {

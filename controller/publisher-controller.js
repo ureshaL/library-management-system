@@ -23,7 +23,7 @@ btnSave.click(function () {
         data: formAdd.serializeArray(),
         dataType: 'json'
     }).done(function (res) {
-        if (res.success === true) {
+        if (res.success != null && res.success === true) {
             addModal.modal('hide');
             loadAllData();
         } else {
@@ -83,6 +83,7 @@ function loadUpdateModal(pubId, pubName) {
 
 function deleteRow(id) {
     deleteModal.modal('show');
+    btnDelete.off('click');
     btnDelete.click(function () {
         $.ajax({
             url: API_URL + '/PublisherService.php?action=delete',
@@ -90,7 +91,7 @@ function deleteRow(id) {
             data: {publisherID: id},
             dataType: 'json'
         }).done(function (res) {
-            if (res.success === true) {
+            if (res.success != null && res.success === true) {
                 deleteModal.modal('hide');
                 loadAllData();
             } else {

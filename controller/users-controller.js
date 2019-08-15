@@ -89,6 +89,7 @@ function loadUpdateModal(nic, name, mobile, address) {
 
 function deleteUser(userId) {
     deleteModal.modal('show');
+    btnDelete.off('click');
     btnDelete.click(function () {
         $.ajax({
             url: API_URL + '/UserService.php?action=delete',
