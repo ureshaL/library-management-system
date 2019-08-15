@@ -12,4 +12,6 @@ interface UserRepo
     public function deleteUser($userID): bool ;
 
     public function getAllUsers():array ;
+
+    public function getUserCount():int;
 }

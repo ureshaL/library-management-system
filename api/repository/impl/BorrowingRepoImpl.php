@@ -8,10 +8,10 @@ class BorrowingRepoImpl implements BorrowingRepo
 
     public function setConnection(mysqli $connection)
     {
-        $this->$connection = $connection;
+        $this->connection = $connection;
     }
 
-    public function addBorrowings(Borrowing ...$borrowings): bool
+    public function addBorrowings($borrowings): bool
     {
         foreach ($borrowings as $borrowing) {
             $response=  $this->connection->query("INSERT INTO Borrowing VALUES (
@@ -25,5 +25,11 @@ class BorrowingRepoImpl implements BorrowingRepo
             }
         }
         return true;
+    }
+
+    public function getBorrowingCount(): int
+    {
+        $count =  $this->connection->query("SELECT COUNT(bro_id) FROM library_mgmt.Borrowing");
+        return $count;
     }
 }

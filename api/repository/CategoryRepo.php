@@ -12,4 +12,6 @@ interface CategoryRepo
     public function deleteCategory($categoryID): bool ;
 
     public function getAllCategory():array ;
+
+    public function getCategoryCount():int;
 }
