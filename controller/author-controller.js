@@ -83,6 +83,7 @@ function loadUpdateModal(autId, autName) {
 
 function deleteRow(id) {
     deleteModal.modal('show');
+    btnDelete.off('click');
     btnDelete.click(function () {
         $.ajax({
             url: API_URL + '/PublisherService.php?action=delete',

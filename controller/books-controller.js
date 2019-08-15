@@ -108,3 +108,30 @@ function loadAllPublishers() {
         }
     });
 } loadAllPublishers();
+
+function loadUpdateModal(catId, catName) {
+    updateFormControls.catId.val(catId);
+    updateFormControls.catName.val(catName);
+
+    updateModal.modal('show');
+}
+
+function deleteRow(id) {
+    deleteModal.modal('show');
+    btnDelete.off('click');
+    btnDelete.click(function () {
+        $.ajax({
+            url: API_URL + '/BookService.php?action=delete',
+            method: 'POST',
+            data: {isbn: id},
+            dataType: 'json'
+        }).done(function (res) {
+            if (res.success != null && res.success === true) {
+                deleteModal.modal('hide');
+                loadAllData();
+            } else {
+                alert(res.success);
+            }
+        });
+    });
+}
