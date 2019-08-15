@@ -144,6 +144,12 @@
                                     <p>Return Books</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="borrow-books.php" class="nav-link">
+                                    <i class="fas fa-list nav-icon"></i>
+                                    <p>View Borrowings</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
