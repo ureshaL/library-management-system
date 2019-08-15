@@ -54,4 +54,13 @@ class CategoryBOImpl implements CategoryBO
         $categoryArray = $categoryRepo->getAllCategory();
         return $categoryArray;
     }
+
+    public function getCategoryCount()
+    {
+        $categoryRepo = new CategoryRepoImpl();
+        $connection = (new DBConnection())->getConnection();
+        $categoryRepo->setConnection($connection);
+        $count = $categoryRepo->getCategoryCount();
+        return $count;
+    }
 }

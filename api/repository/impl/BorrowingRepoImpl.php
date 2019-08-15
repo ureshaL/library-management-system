@@ -14,7 +14,7 @@ class BorrowingRepoImpl implements BorrowingRepo
     public function addBorrowings($borrowings): bool
     {
         foreach ($borrowings as $borrowing) {
-            $response=  $this->connection->query("INSERT INTO Borrowing VALUES (
+            $response = $this->connection->query("INSERT INTO Borrowing VALUES (
                 '{$borrowing->getBroId()}',
                 '{$borrowing->getIsbn()}',
                 '{$borrowing->getStatus()}'
@@ -29,7 +29,7 @@ class BorrowingRepoImpl implements BorrowingRepo
 
     public function getBorrowingCount(): int
     {
-        $count =  $this->connection->query("SELECT COUNT(bro_id) FROM library_mgmt.Borrowing");
-        return $count;
+        $rs = $this->connection->query("SELECT COUNT(*) AS count FROM Borrowing");
+        return $rs->fetch_assoc()['count'];
     }
 }

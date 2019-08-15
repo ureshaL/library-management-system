@@ -81,7 +81,7 @@ class BookRepoImpl implements BookRepo
 
     public function getBookCount(): int
     {
-        $count = $this->connection->query("SELECT COUNT(isbn) FROM Book;");
-        return $count;
+        $rs = $this->connection->query("SELECT COUNT(*) AS count FROM Book");
+        return $rs->fetch_assoc()['count'];
     }
 }

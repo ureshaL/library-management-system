@@ -49,7 +49,7 @@ class CategoryRepoImpl implements CategoryRepo
 
     public function getCategoryCount(): int
     {
-        $count =   $this->connection->query("SELECT COUNT(c_id) FROM library_mgmt.Category;");
-        return $count;
+        $rs = $this->connection->query("SELECT COUNT(*) AS count FROM Category");
+        return $rs->fetch_assoc()['count'];
     }
 }

@@ -1,10 +1,34 @@
 <?php
 require_once __DIR__."/../bo/impl/BorrowOrderBOImpl.php";
+require_once __DIR__."/../bo/impl/BookBOImpl.php";
+require_once __DIR__."/../bo/impl/UserBOImpl.php";
+require_once __DIR__."/../bo/impl/CategoryBOImpl.php";
 
 $method = $_SERVER["REQUEST_METHOD"];
+
 $borrowOrderBO = new BorrowOrderBOImpl();
+$bookBO = new BookBOImpl();
+$userBO = new UserBOImpl();
+$categoryBO = new CategoryBOImpl();
 
 switch ($method){
+    case "GET":
+        $action = $_GET["action"];
+        switch ($action){
+            case "getDashboardCounts":
+                $bookCount = $bookBO->getBookCount();
+                $userCount = $userBO->getUserCount();
+                $categoryCount = $categoryBO->getCategoryCount();
+                $borrowingCount = $borrowOrderBO->getBorrowingCount();
+                echo json_encode(array(
+                    "bookCount" => $bookCount,
+                    "userCount" => $userCount,
+                    "categoryCount" => $categoryCount,
+                    "borrowingCount" => $borrowingCount,
+                ));
+                break;
+        }
+        break;
     case "POST":
         $action = $_GET["action"];
         switch ($action) {

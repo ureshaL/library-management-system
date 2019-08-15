@@ -54,4 +54,13 @@ class UserBOImpl implements UserBO
         $userArray = $userRepo->getAllUsers();
         return $userArray;
     }
+
+    public function getUserCount()
+    {
+        $userRepo = new UserReoImpl();
+        $connection = (new DBConnection())->getConnection();
+        $userRepo->setConnection($connection);
+        $count = $userRepo->getUserCount();
+        return $count;
+    }
 }

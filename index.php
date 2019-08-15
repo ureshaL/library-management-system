@@ -97,5 +97,7 @@
 </div>
 <!-- /.content-wrapper -->
 <?php include_once('includes/common-scripts.php') ?>
+<script src="constants/constants.js"></script>
+<script src="controller/dahboard-controller.js"></script>
 </body>
 </html>

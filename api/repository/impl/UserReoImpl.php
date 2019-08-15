@@ -60,7 +60,7 @@ class UserReoImpl implements UserRepo
 
     public function getUserCount(): int
     {
-        $count =   $this->connection->query("SELECT COUNT(nic) FROM User;");
-        return $count;
+        $rs = $this->connection->query("SELECT COUNT(*) AS count FROM User");
+        return $rs->fetch_assoc()['count'];
     }
 }

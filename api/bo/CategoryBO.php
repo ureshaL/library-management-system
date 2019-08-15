@@ -7,4 +7,5 @@ interface CategoryBO
     public function updateCategory(Category $category);
     public function deleteCategory($categoryID);
     public function getAllCategory();
+    public function getCategoryCount();
 }
