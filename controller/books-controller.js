@@ -33,6 +33,10 @@ function loadAllData() {
                     <tr>
                         <td>${row[0]}</td>
                         <td>${row[1]}</td>
+                        <td>${row[3]}</td>
+                        <td>${row[5]}</td>
+                        <td>${row[7]}</td>
+                        <td>${row[8]}</td>
                         <td class="text-center">
                             <button onclick="loadUpdateModal('${row[0]}','${row[1]}','${row[2]}','${row[3]}')" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Update</button>
                             <button onclick="deleteRow('${row[0]}')" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>

@@ -39,6 +39,10 @@
                                 <tr>
                                     <th>ISBN</th>
                                     <th>Book Name</th>
+                                    <th>Author</th>
+                                    <th>Category</th>
+                                    <th>Publisher</th>
+                                    <th>QTY</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
