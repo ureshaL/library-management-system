@@ -8,26 +8,20 @@ switch ($method){
     case "POST":
         $action = $_GET["action"];
         switch ($action) {
-            case "save":
+            case "placeBorrowOrder":
                 $json = file_get_contents("php://input");
                 $object = json_decode($json);
 
-                $broID = $object->borrowID;
-                $date = $object->date;
-                $userNic = $object->nic;
+                $borrow_order = $object->borrow_order;
+                $isbn_list = $object->isbn_list;
 
-                $newO = new Borrow_Order($broID, $date, $userNic);
-                $borrowings = [];
-                foreach ($object->borrowing as $b) {
-                    $broID = $b->borrowID;
-                    $isbn = $b->isbn;
-                    $status = $b->status;
-
-                    $borrowing = new Borrowing($broID, $isbn, $status);
-                    array_push($borrowings, $borrowing);
-                }
-                $res = $borrowOrderBO->addBorrowOrder($newO, $borrowings);
-                echo $res;
+                $res = $borrowOrderBO->addBorrowOrder(
+                    new Borrow_Order(-1, $borrow_order->date, $borrow_order->User_nic),
+                    $isbn_list
+                );
+                echo json_encode(array(
+                    "success" => $res
+                ));
                 break;
         }
         break;
