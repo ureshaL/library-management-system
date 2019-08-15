@@ -46,4 +46,10 @@ class CategoryRepoImpl implements CategoryRepo
         $resultSet =   $this->connection->query("select * from Category");
         return $resultSet->fetch_all();
     }
+
+    public function getCategoryCount(): int
+    {
+        $count =   $this->connection->query("SELECT COUNT(c_id) FROM library_mgmt.Category;");
+        return $count;
+    }
 }

@@ -74,4 +74,10 @@ class BookRepoImpl implements BookRepo
         }
         return true;
     }
+
+    public function getBookCount(): int
+    {
+        $count = $this->connection->query("SELECT COUNT(isbn) FROM Book;");
+        return $count;
+    }
 }

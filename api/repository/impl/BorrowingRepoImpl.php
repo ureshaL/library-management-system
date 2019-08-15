@@ -26,4 +26,10 @@ class BorrowingRepoImpl implements BorrowingRepo
         }
         return true;
     }
+
+    public function getBorrowingCount(): int
+    {
+        $count =  $this->connection->query("SELECT COUNT(bro_id) FROM library_mgmt.Borrowing");
+        return $count;
+    }
 }
