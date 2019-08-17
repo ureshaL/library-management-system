@@ -5,7 +5,7 @@ class DBConnection
 {
     private $host='127.0.0.1';
     private $userName="root";
-    private $password="123";
+    private $password="12345";
     private $database="library_mgmt";
     private $port="3306";
 

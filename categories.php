@@ -39,7 +39,7 @@
                                 <tr>
                                     <th>Category ID</th>
                                     <th>Category Name</th>
-                                    <th>Actions</th>
+                                    <th data-width="150">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="user-tbl-body">
