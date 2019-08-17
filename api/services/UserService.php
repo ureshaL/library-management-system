@@ -13,6 +13,11 @@ switch ($method){
                 $UserArray = $userBO->getAllUsers();
                 echo json_encode($UserArray);
                 break;
+            case "search":
+                $userID = $_GET["nic"];
+                $user = $userBO->searchUser($userID);
+                echo json_encode($user);
+                break;
         }
         break;
     case "POST":

@@ -8,4 +8,5 @@ interface UserBO
     public function deleteUser($userID);
     public function getAllUsers();
     public function getUserCount();
+    public function searchUser($userID);
 }
