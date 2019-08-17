@@ -41,7 +41,7 @@
                                     <th>Name</th>
                                     <th>Mobile</th>
                                     <th>Address</th>
-                                    <th>Actions</th>
+                                    <th data-width="150">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="user-tbl-body">

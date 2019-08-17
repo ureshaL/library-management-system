@@ -7,8 +7,12 @@ const addModal = $('#add-modal');
 const deleteModal = $('#delete-modal');
 const updateModal = $('#update-modal');
 const updateFormControls = {
-    catId: $('#upCatId'),
-    catName: $('#upCatName')
+    isbn: $('#up-isbn'),
+    bookName: $('#up-bookName'),
+    author: $('#up-authorSelect'),
+    cat: $('#up-catSelect'),
+    pub: $('#up-pubSelect'),
+    qty: $('#up-qty'),
 };
 const tblBody = $('#user-tbl-body');
 let dataTable;
@@ -38,7 +42,7 @@ function loadAllData() {
                         <td>${row[7]}</td>
                         <td>${row[8]}</td>
                         <td class="text-center">
-                            <button onclick="loadUpdateModal('${row[0]}','${row[1]}','${row[2]}','${row[3]}')" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Update</button>
+                            <button onclick="loadUpdateModal('${row[0]}','${row[1]}','${row[2]}','${row[4]}','${row[6]}','${row[8]}')" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i> Update</button>
                             <button onclick="deleteRow('${row[0]}')" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</button>
                         </td>
                     </tr>
@@ -65,6 +69,22 @@ btnSave.click(function () {
     });
 });
 
+btnUpdate.click(function () {
+    $.ajax({
+        url: API_URL + '/BookService.php?action=update',
+        method: 'POST',
+        data: formUpdate.serializeArray(),
+        dataType: 'json'
+    }).done(function (res) {
+        if (res.success === true) {
+            updateModal.modal('hide');
+            loadAllData();
+        } else {
+            alert(res.success);
+        }
+    });
+});
+
 function loadAllAuthors() {
     $.ajax({
         url: API_URL + '/AuthorService.php?action=getAll',
@@ -74,6 +94,9 @@ function loadAllAuthors() {
         if (res.success !== null) {
             for (const row of res) {
                 addFormAuthor.append(`
+                    <option value="${row[0]}">${row[1]}</option>
+                `);
+                updateFormControls.author.append(`
                     <option value="${row[0]}">${row[1]}</option>
                 `);
             }
@@ -92,6 +115,9 @@ function loadAllCategories() {
                 addFormCategory.append(`
                     <option value="${row[0]}">${row[1]}</option>
                 `);
+                updateFormControls.cat.append(`
+                    <option value="${row[0]}">${row[1]}</option>
+                `);
             }
         }
     });
@@ -108,15 +134,21 @@ function loadAllPublishers() {
                 addFormPublisher.append(`
                     <option value="${row[0]}">${row[1]}</option>
                 `);
+                updateFormControls.pub.append(`
+                    <option value="${row[0]}">${row[1]}</option>
+                `);
             }
         }
     });
 } loadAllPublishers();
 
-function loadUpdateModal(catId, catName) {
-    updateFormControls.catId.val(catId);
-    updateFormControls.catName.val(catName);
-
+function loadUpdateModal(isbn, bookName, authorId, catId, pubId, qty) {
+    updateFormControls.isbn.val(isbn);
+    updateFormControls.bookName.val(bookName);
+    updateFormControls.author.val(authorId);
+    updateFormControls.cat.val(catId);
+    updateFormControls.pub.val(pubId);
+    updateFormControls.qty.val(qty);
     updateModal.modal('show');
 }
 

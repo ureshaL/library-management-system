@@ -43,7 +43,7 @@
                                     <th>Category</th>
                                     <th>Publisher</th>
                                     <th>QTY</th>
-                                    <th>Actions</th>
+                                    <th data-width="150">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="user-tbl-body">
@@ -132,7 +132,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Update Category</h4>
+                <h4 class="modal-title">Update Book</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -140,15 +140,40 @@
             <div class="modal-body">
                 <form id="form-update">
                     <div class="form-group">
-                        <label for="upCatId">Category ID</label>
+                        <label for="up-isbn">ISBN</label>
                         <input type="text" class="form-control"
-                               id="upCatId" name="CategoryID">
+                               id="up-isbn" name="isbn"
+                               placeholder="Enter isbn of book">
                     </div>
                     <div class="form-group">
-                        <label for="upCatName">Category Name</label>
+                        <label for="up-bookName">Book Name</label>
                         <input type="text" class="form-control"
-                               id="upCatName" name="CategoryName"
-                               placeholder="Enter categoey name">
+                               id="up-bookName" name="bookName"
+                               placeholder="Enter book name">
+                    </div>
+                    <div class="form-group">
+                        <label for="up-authorSelect">Author</label>
+                        <select class="form-control" id="up-authorSelect" name="authorId">
+                            <option value="-1" disabled selected>Select Author</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="up-catSelect">Category</label>
+                        <select class="form-control" id="up-catSelect" name="categoryId">
+                            <option value="-1" disabled selected>Select Category</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="up-pubSelect">Publisher</label>
+                        <select class="form-control" id="up-pubSelect" name="publisherId">
+                            <option value="-1" disabled selected>Select Publisher</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="up-qty">QTY</label>
+                        <input type="number" class="form-control"
+                               id="up-qty" name="qty"
+                               placeholder="Enter book qty">
                     </div>
                 </form>
             </div>
@@ -170,13 +195,13 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Delete Category?</h4>
+                <h4 class="modal-title">Delete Book?</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                Are you sure do you really want to delete this category?
+                Are you sure do you really want to delete this book?
             </div>
 
             <!-- Modal footer -->
