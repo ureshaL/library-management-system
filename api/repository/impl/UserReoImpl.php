@@ -63,4 +63,10 @@ class UserReoImpl implements UserRepo
         $rs = $this->connection->query("SELECT COUNT(*) AS count FROM User");
         return $rs->fetch_assoc()['count'];
     }
+
+    public function searchUser($userID): bool
+    {
+        $resultSet =   $this->connection->query("select * from User where nic='{$userID}'");
+        return $resultSet->fetch_assoc();
+    }
 }
