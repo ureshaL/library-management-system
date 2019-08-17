@@ -61,6 +61,7 @@
                         <label for="txtUserId">User NIC</label>
                         <input type="text" class="form-control"
                                id="txtUserId" placeholder="Enter user nic">
+                        <span id="error-user-nic" class="text-danger" style="display: none">*cannot find user</span>
                     </div>
                 </form>
             </div>

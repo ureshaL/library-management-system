@@ -13,7 +13,7 @@ interface UserRepo
 
     public function getAllUsers():array ;
 
-    public function searchUser($userID):bool;
+    public function searchUser($userID);
 
     public function getUserCount():int;
 }

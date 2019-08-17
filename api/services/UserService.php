@@ -16,7 +16,9 @@ switch ($method){
             case "search":
                 $userID = $_GET["nic"];
                 $user = $userBO->searchUser($userID);
-                echo json_encode($user);
+                echo json_encode(array(
+                    "user" => $user
+                ));
                 break;
         }
         break;
