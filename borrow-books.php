@@ -20,7 +20,7 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content" style="display: none;">
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -29,6 +29,89 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+
+                        <div class="card">
+                            <div class="card-header bg-light">User Details</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="nic">Nic</label>
+                                            <input type="text" class="form-control" id="nic" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            <input type="text" class="form-control" id="address" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="mobile">Mobile</label>
+                                            <input type="text" class="form-control" id="mobile" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header bg-light">Search Books</div>
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped w-100">
+                                    <thead>
+                                    <tr>
+                                        <th>ISBN</th>
+                                        <th>Book Name</th>
+                                        <th>Author</th>
+                                        <th>Category</th>
+                                        <th>Publisher</th>
+                                        <th>QTY</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="user-tbl-body">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header bg-light">Selected Books</div>
+                            <div class="card-body">
+                                <table class="table table-bordered table-striped w-100">
+                                    <thead>
+                                    <tr>
+                                        <th>ISBN</th>
+                                        <th>Book Name</th>
+                                        <th>Author</th>
+                                        <th>Category</th>
+                                        <th>Publisher</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="selected-books-tbl-body">
+
+                                    </tbody>
+                                </table>
+                                <div class="text-center pt-1">
+                                    <span id="msg-no-books-selected">No books selected</span>
+                                </div>
+
+                                <div class="text-right mt-3">
+                                    <button id="btn-confirm" class="btn btn-success">
+                                        <i class="far fa-check-circle"></i> Confirm Borrowing
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
 
                     </div>
                     <!-- /.card-body -->
