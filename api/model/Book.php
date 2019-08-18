@@ -9,7 +9,7 @@ class Book
     private $c_id;
     private $p_id;
     private $qty;
-    private $status;
+    private $current_qty;
 
     /**
      * @return mixed
@@ -110,18 +110,17 @@ class Book
     /**
      * @return mixed
      */
-    public function getStatus()
+    public function getCurrentQty()
     {
-        return $this->status;
+        return $this->current_qty;
     }
 
     /**
-     * @param mixed $status
+     * @param mixed $current_qty
      */
-    public function setStatus($status)
+    public function setCurrentQty($current_qty)
     {
-        $this->status = $status;
+        $this->current_qty = $current_qty;
     }
-
 
 }

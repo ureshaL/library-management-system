@@ -54,4 +54,13 @@ class BorrowOrderBOImpl implements BorrowOrderBO
         $count = $borrowingRepo->getBorrowingCount();
         return $count;
     }
+
+    public function getAllBorrowOrders(): array
+    {
+        $borrowOrderRepo = new BorrowOrderRepoImpl();
+        $connection = (new DBConnection())->getConnection();
+        $borrowOrderRepo->setConnection($connection);
+        $result = $borrowOrderRepo->getAllBorrowOrders();
+        return $result;
+    }
 }

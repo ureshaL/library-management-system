@@ -16,4 +16,6 @@ interface BookRepo
     public function markBooksBorrowed($bookIds): bool;
 
     public function getBookCount():int;
+
+    public function getAllAvailableBooks():array;
 }

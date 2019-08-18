@@ -27,6 +27,10 @@ switch ($method){
                     "borrowingCount" => $borrowingCount,
                 ));
                 break;
+            case "getAll":
+                $result = $borrowOrderBO->getAllBorrowOrders();
+                echo json_encode($result);
+                break;
         }
         break;
     case "POST":
