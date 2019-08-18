@@ -72,7 +72,7 @@ class BookRepoImpl implements BookRepo
     public function markBooksBorrowed($bookIds): bool
     {
         foreach ($bookIds as $bookId) {
-            $response = $this->connection->query("UPDATE Book SET status='1' WHERE isbn='{$bookId}'");
+            $response = $this->connection->query("UPDATE Book SET current_qty=current_qty-1 WHERE isbn='{$bookId}'");
             if ($response <= 0 || $this->connection->affected_rows<=0) {
                 return false;
             }
@@ -88,6 +88,11 @@ class BookRepoImpl implements BookRepo
 
     public function getAllAvailableBooks(): array
     {
-
+        $resultSet =   $this->connection->query("
+            SELECT isbn,book_name,B.a_id,author_name,B.c_id,cat_name,P.p_id,pub_name,qty,current_qty
+            FROM Book B, Author A, Category C, Publisher P
+            WHERE B.a_id=A.a_id AND B.c_id=C.c_id AND B.p_id=P.p_id AND current_qty>0
+        ");
+        return $resultSet->fetch_all();
     }
 }

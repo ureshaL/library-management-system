@@ -8,4 +8,5 @@ interface BookBO
     public function deleteBook($bookID);
     public function getAllBooks();
     public function getBookCount();
+    public function getAllAvailableBooks();
 }
