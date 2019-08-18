@@ -12,6 +12,10 @@ switch ($method){
                 $BookArray = $bookBO->getAllBooks();
                 echo json_encode($BookArray);
                 break;
+            case "getAllAvailable":
+                $BookArray = $bookBO->getAllAvailableBooks();
+                echo json_encode($BookArray);
+                break;
         }
         break;
     case "POST":

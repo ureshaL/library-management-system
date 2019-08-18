@@ -18,6 +18,7 @@ let dataTable;
 function initDataTable() {
     dataTable = $("#example1").DataTable();
 } initDataTable();
+let allBooks = [];
 let selectedBooks = [];
 
 addModal.on('hidden.bs.modal', function () {
@@ -56,15 +57,22 @@ txtUserId.keydown(function () {
 
 function loadAllBooks() {
     $.ajax({
-        url: API_URL + '/BookService.php?action=getAll',
+        url: API_URL + '/BookService.php?action=getAllAvailable',
         method: 'GET',
         dataType: 'json'
     }).done(function (res) {
         if (res.success !== null) {
-            dataTable.destroy();
-            tblBody.html('');
-            for (const row of res) {
-                tblBody.append(`
+            allBooks = res;
+            reloadAllBooks();
+        }
+    });
+} loadAllBooks();
+
+function reloadAllBooks() {
+    dataTable.destroy();
+    tblBody.html('');
+    for (const row of allBooks) {
+        tblBody.append(`
                     <tr id="tbl_row_${row[0]}">
                         <td>${row[0]}</td>
                         <td>${row[1]}</td>
@@ -80,13 +88,18 @@ function loadAllBooks() {
                         </td>
                     </tr>
                 `);
-            }
-            initDataTable();
-        }
-    });
-} loadAllBooks();
+    }
+    initDataTable();
+}
 
 function addToSelectedBooks(isbn, bookName, author, cat, pub) {
+    for (let i=0; i<allBooks.length; i++) {
+        if (isbn === allBooks[i][0]) {
+            allBooks.splice(i,1);
+            dataTable.row($('#tbl_row_'+isbn)).remove().draw();
+            break;
+        }
+    }
     selectedBooks.push({
         isbn: isbn,
         bookName: bookName,
@@ -95,6 +108,10 @@ function addToSelectedBooks(isbn, bookName, author, cat, pub) {
         pub: pub
     });
 
+    reloadSelectedBooks();
+}
+
+function reloadSelectedBooks() {
     selectedBooksTblBody.html('');
     for (const book of selectedBooks) {
         selectedBooksTblBody.append(`
@@ -104,11 +121,17 @@ function addToSelectedBooks(isbn, bookName, author, cat, pub) {
                 <td>${book.author}</td>
                 <td>${book.cat}</td>
                 <td>${book.pub}</td>
+                <td align="center">
+                    <button class="btn btn-secondary btn-sm">
+                        <i class="fas fa-ban"></i>
+                    </button>
+                </td>
             </tr>
         `);
     }
-    msgNoBooksSelected.css('display', 'none');
-    dataTable.row($('#tbl_row_'+isbn)).remove().draw();
+    if (selectedBooks.length > 0) {
+        msgNoBooksSelected.css('display', 'none');
+    }
 }
 
 btnConfirm.click(function () {
@@ -116,22 +139,27 @@ btnConfirm.click(function () {
     for (const book of selectedBooks) {
         isbn_list.push(book.isbn);
     }
-    $.ajax({
-        url: API_URL + '/BorrowOrderService.php?action=placeBorrowOrder',
-        method: 'POST',
-        data: JSON.stringify({
-            borrow_order: {
-                User_nic: selectedUser.nic,
-                date: new Date().toLocaleString()
-            },
-            isbn_list: isbn_list
-        }),
-        dataType: 'json'
-    }).done(function (res) {
-        if (res.success === true) {
-            alert("Borrowing successful!");
-        } else {
-            alert(res.success);
-        }
-    });
+    if (isbn_list.length > 0) {
+        $.ajax({
+            url: API_URL + '/BorrowOrderService.php?action=placeBorrowOrder',
+            method: 'POST',
+            data: JSON.stringify({
+                borrow_order: {
+                    User_nic: selectedUser.nic,
+                    date: new Date().toLocaleString()
+                },
+                isbn_list: isbn_list
+            }),
+            dataType: 'json'
+        }).done(function (res) {
+            if (res.success === true) {
+                alert("Borrowing successful!");
+                window.location.reload();
+            } else {
+                alert(res.success);
+            }
+        });
+    } else {
+        alert('Please choose at least one book!');
+    }
 });

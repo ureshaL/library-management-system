@@ -63,4 +63,13 @@ class BookBOImpl implements BookBO
         $count = $bookRepo->getBookCount();
         return $count;
     }
+
+    public function getAllAvailableBooks()
+    {
+        $bookRepo = new BookRepoImpl();
+        $connection = (new DBConnection())->getConnection();
+        $bookRepo->setConnection($connection);
+        $bookArray = $bookRepo->getAllAvailableBooks();
+        return $bookArray;
+    }
 }

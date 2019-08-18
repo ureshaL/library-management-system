@@ -93,6 +93,7 @@
                                         <th>Author</th>
                                         <th>Category</th>
                                         <th>Publisher</th>
+                                        <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody id="selected-books-tbl-body">
