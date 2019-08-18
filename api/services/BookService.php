@@ -16,6 +16,11 @@ switch ($method){
                 $BookArray = $bookBO->getAllAvailableBooks();
                 echo json_encode($BookArray);
                 break;
+            case "getByBorrowOrderId":
+                $bro_id = $_GET["bro_id"];
+                $BookArray = $bookBO->getBooksByBorrowOrderId($bro_id);
+                echo json_encode($BookArray);
+                break;
         }
         break;
     case "POST":

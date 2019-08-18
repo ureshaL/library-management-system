@@ -72,4 +72,13 @@ class BookBOImpl implements BookBO
         $bookArray = $bookRepo->getAllAvailableBooks();
         return $bookArray;
     }
+
+    public function getBooksByBorrowOrderId($bro_id)
+    {
+        $bookRepo = new BookRepoImpl();
+        $connection = (new DBConnection())->getConnection();
+        $bookRepo->setConnection($connection);
+        $bookArray = $bookRepo->getBooksByBorrowOrderId($bro_id);
+        return $bookArray;
+    }
 }

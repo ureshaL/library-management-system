@@ -56,7 +56,7 @@
 
 <!-- View Books Modal -->
 <div class="modal fade" id="view-books-modal">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
             <!-- Modal Header -->
