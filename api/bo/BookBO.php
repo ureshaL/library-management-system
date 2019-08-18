@@ -9,4 +9,5 @@ interface BookBO
     public function getAllBooks();
     public function getBookCount();
     public function getAllAvailableBooks();
+    public function getBooksByBorrowOrderId($bro_id);
 }

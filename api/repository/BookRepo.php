@@ -18,4 +18,6 @@ interface BookRepo
     public function getBookCount():int;
 
     public function getAllAvailableBooks():array;
+
+    public function getBooksByBorrowOrderId($bro_id):array;
 }
