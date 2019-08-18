@@ -73,7 +73,6 @@
                                         <th>Author</th>
                                         <th>Category</th>
                                         <th>Publisher</th>
-                                        <th>QTY</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>

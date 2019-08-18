@@ -20,7 +20,7 @@ class BookRepoImpl implements BookRepo
             '{$book->getCId()}',
             '{$book->getPId()}',
             '{$book->getQty()}',
-            '0'
+            '{$book->getQty()}'
             )
         ");
         if ($response>0 && $this->connection->affected_rows>0){
@@ -37,6 +37,7 @@ class BookRepoImpl implements BookRepo
             a_id='{$book->getAId()}',
             c_id='{$book->getCId()}',
             p_id='{$book->getPId()}',
+            current_qty=IF(qty='{$book->getQty()}', current_qty, current_qty+'{$book->getQty()}'-qty),
             qty='{$book->getQty()}'
             WHERE 
             isbn='{$book->getIsbn()}'
@@ -61,7 +62,7 @@ class BookRepoImpl implements BookRepo
     public function getAllBooks(): array
     {
         $resultSet =   $this->connection->query("
-            SELECT isbn,book_name,B.a_id,author_name,B.c_id,cat_name,P.p_id,pub_name,qty,status
+            SELECT isbn,book_name,B.a_id,author_name,B.c_id,cat_name,P.p_id,pub_name,qty,current_qty
             FROM Book B, Author A, Category C, Publisher P
             WHERE B.a_id=A.a_id AND B.c_id=C.c_id AND B.p_id=P.p_id
         ");
@@ -83,5 +84,10 @@ class BookRepoImpl implements BookRepo
     {
         $rs = $this->connection->query("SELECT COUNT(*) AS count FROM Book");
         return $rs->fetch_assoc()['count'];
+    }
+
+    public function getAllAvailableBooks(): array
+    {
+
     }
 }

@@ -35,7 +35,7 @@ btnProceed.click(function () {
         dataType: 'json'
     }).done(function (res) {
         if (res.user !== null) {
-            selectedUser = res;
+            selectedUser = res.user;
             userDetailsForm.nic.val(res.user.nic);
             userDetailsForm.name.val(res.user.user_name);
             userDetailsForm.address.val(res.user.address);
@@ -65,15 +65,18 @@ function loadAllBooks() {
             tblBody.html('');
             for (const row of res) {
                 tblBody.append(`
-                    <tr>
+                    <tr id="tbl_row_${row[0]}">
                         <td>${row[0]}</td>
                         <td>${row[1]}</td>
                         <td>${row[3]}</td>
                         <td>${row[5]}</td>
                         <td>${row[7]}</td>
-                        <td>${row[8]}</td>
                         <td class="text-center">
-                            <button onclick="addToSelectedBooks('${row[0]}','${row[1]}','${row[3]}','${row[5]}','${row[7]}')" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Select Book</button>
+                            <button 
+                                onclick="addToSelectedBooks('${row[0]}','${row[1]}','${row[3]}','${row[5]}','${row[7]}')" 
+                                class="btn btn-success btn-sm">
+                                <i class="fas fa-plus"></i> Select Book
+                            </button>
                         </td>
                     </tr>
                 `);
@@ -105,8 +108,30 @@ function addToSelectedBooks(isbn, bookName, author, cat, pub) {
         `);
     }
     msgNoBooksSelected.css('display', 'none');
+    dataTable.row($('#tbl_row_'+isbn)).remove().draw();
 }
 
 btnConfirm.click(function () {
-    //to code
+    let isbn_list = [];
+    for (const book of selectedBooks) {
+        isbn_list.push(book.isbn);
+    }
+    $.ajax({
+        url: API_URL + '/BorrowOrderService.php?action=placeBorrowOrder',
+        method: 'POST',
+        data: JSON.stringify({
+            borrow_order: {
+                User_nic: selectedUser.nic,
+                date: new Date().toLocaleString()
+            },
+            isbn_list: isbn_list
+        }),
+        dataType: 'json'
+    }).done(function (res) {
+        if (res.success === true) {
+            alert("Borrowing successful!");
+        } else {
+            alert(res.success);
+        }
+    });
 });

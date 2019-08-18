@@ -6,4 +6,6 @@ interface BorrowOrderRepo
     public function setConnection(mysqli $connection);
 
     public function addBorrowOrder(Borrow_Order $borrow_Order):bool;
+
+    public function getAllBorrowOrders():array;
 }

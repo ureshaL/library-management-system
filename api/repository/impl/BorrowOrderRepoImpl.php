@@ -24,4 +24,10 @@ class BorrowOrderRepoImpl implements BorrowOrderRepo
             return false;
         }
     }
+
+    public function getAllBorrowOrders(): array
+    {
+        $resultSet =   $this->connection->query("SELECT * FROM Borrow_Order");
+        return $resultSet->fetch_all();
+    }
 }
