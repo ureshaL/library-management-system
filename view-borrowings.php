@@ -34,7 +34,7 @@
                                 <tr>
                                     <th>Borrow ID</th>
                                     <th>Date</th>
-                                    <th>User NIC</th>
+                                    <th >User NIC</th>
                                     <th data-width="100">Actions</th>
                                 </tr>
                             </thead>
@@ -79,6 +79,44 @@
                     </tr>
                     </thead>
                     <tbody id="borrowed-books-tbl-body">
+                    </tbody>
+                </table>
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- View User Modal -->
+<div class="modal fade" id="view-user-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Borrowed User</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                <table class="table w-100">
+                    <thead>
+                    <tr>
+                        <th>NIC</th>
+                        <th>User Name</th>
+                        <th>Address</th>
+                        <th>Mobile</th>
+                    </tr>
+                    </thead>
+                    <tbody id="borrowed-users-tbl-body">
                     </tbody>
                 </table>
 
